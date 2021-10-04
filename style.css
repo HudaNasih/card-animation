@@ -1,0 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+
+* {
+    box-sizing: border-box; /*if add any padding or any border, it doesnt actually affect the width of it*/
+} 
+
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: #333;
+    color: #222; 
+    margin: 0;
+    overflow-x: hidden;
+}
+
+.container{
+    background-color: #fafafa;
+    transform-origin: top left; /*rotate from top left not in the middle*/
+    transition: transform 0.5s linear;
+    width: 100vw;
+    min-height: 100vh;
+    padding: 50px;
+}
+
+/*without space btween class to work */
+/*class:show-nav , we adding it in js*/
+.container.show-nav {
+    transform: rotate(-20deg);
+}
+
+.circle-container{
+    position: fixed; /*move with page*/
+    /* make circle, not shown at first but make border radius in '.circle' class */
+    top: -100px;
+    left: -100px;
+}
+
+.circle{
+    background-color: #ff7979;
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    position: relative;
+    transition: transform 0.5s linear;
+}
+
+/*when u click the bar button , then the X button to close it show*/
+.container.show-nav .circle{
+    transform: rotate(-70deg);
+}
+
+.circle button{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 26px;
+    height: 100px;
+    background-color: transparent;
+    color: white;
+    border: 0;
+    cursor: pointer;
+}
+
+.circle button:focus{
+    outline: none;
+}
+
+.circle button#open{
+    left: 60%;
+}
+
+.circle button#close{
+    top: 60%;
+    transform: rotate(90deg);
+    transform-origin: top left;
+}
+ 
+.container.show-nav + nav li {
+    transform: translateX(0);
+    transition-delay: 0.3s;
+}
+
+nav{
+    position: fixed;
+    bottom: 40px;
+    left: 0;
+    z-index: 100px;
+}
+
+nav ul{
+    list-style-type: none;
+    padding-left: 30px;
+}
+
+nav ul li{
+    text-transform: uppercase;
+    margin: 40px auto;
+    color: #fff ;
+    transform: translateX(-100%);
+    transition: transform 0.4s ease-in;
+
+}
+
+nav ul li i{
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+nav ul li + li{
+    margin-left: 15px;
+    transform: translateX(-150%);
+    transition-delay: 0.1s;
+}
+
+nav ul li + li + li{
+    margin-left: 30px;
+    transform: translateX(-200%);
+    transition-delay: 0.2s;
+}
+
+/*content style css*/
+
+
+.content img{
+    max-width: 100%;
+}
+
+.content{
+    max-width: 1000px;
+    margin: 50px auto;
+}
+
+.content h1{
+    margin: 0;
+}
+
+.content .small{
+    color: #555;
+    font-style: italic;
+}
+
+.content p{
+    color: #333;
+    line-height: 1.5;
+}
+
+/*================================================================================================================================================================================================================= */
+/*Expanding card - CSS*/
+.container2 {
+    display: flex; /*horizontaly centered in the row */
+    width: 85vw; /*90% view port */
+    margin-left: -100px;
+}
+
+.panel {
+   /* background-size: auto 100%; change to  background-size: cover; */
+   background-size: cover; /*to preserve rounded corners on large screen*/
+   background-repeat: no-repeat;
+   background-position: center;
+   height: 80vh;
+   border-radius: 50px;
+   color: white;
+   cursor: pointer;
+   flex: 0.5; /*all image even in screen show*/
+   margin: 10px; /*separate image */
+   position: relative; /*cuz we make the text position : absolute;*/
+   transition: flex 0.7s ease-in; /*when get active change the width*/ /*felx means flex property*/
+}
+
+.panel h3 {
+    font-size: 24px;
+    position: absolute;
+    bottom: 20px; /*text get it down*/
+    left: 20px;
+    margin: 0;
+    opacity: 0; /*when its active it gonna show*/
+}
+
+.panel.active{
+    flex: 5; /*above flex officialy is 0.5 , but the first img had diff class so we change it to 5 flex;*/
+}
+
+.panel.active H3 {
+    opacity: 1;
+}
+
+@media ( max-width:480px )  {
+    /*for small screen*/
+    .container2{
+        width: 100vw;
+        margin-left: -20px;
+    }
+
+    /*if screen 480 px then the 4 and 5 pic not shown*/
+    .panel:nth-of-type(4),
+    .panel:nth-of-type(5){
+        display: none;
+    }
+
+    .circle{
+        height: 170px;
+        width: 170px;
+    }
+}
