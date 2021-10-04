@@ -21,6 +21,9 @@ close.addEventListener('click' , () => {
 //select all panels by using 
 /*querySelectorAll() method returns all elements in the document that matches a specified CSS selector(s), as a static NodeList object.*/
 
+
+var nothing= 0; // for merge confilct ++++
+
 const panels = document.querySelectorAll('.panel');
 
 // use arrow function
